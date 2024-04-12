@@ -1,0 +1,37 @@
+.recipient-data-review-table {
+    background-color: #fff;
+    border-radius: var(--bd-radius);
+    margin-top: 10px;
+    padding: 20px;
+}
+
+.table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main-title {
+    color: var(--title-color);
+    font-size: 1.5rem;
+}
+
+.subtitle {
+    font-size: 0.875rem;
+    color: var(--text-color);
+    margin-top: 5px;
+    font-weight: normal;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 1.25rem;
+}
+
+.btn.primary.upload-forms {
+    padding: 13px 40px;
+}
+
+.btn.secondary.upload-accounts {
+    padding: 13px 29px;
+}

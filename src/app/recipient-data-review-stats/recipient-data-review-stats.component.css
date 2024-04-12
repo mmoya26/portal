@@ -1,0 +1,26 @@
+.stats-blocks {
+    display: flex;
+    /* justify-content: space-between; */
+    gap: 50px 100px;
+    background-color: #fff;
+    padding: 1.625rem;
+    border-radius: var(--bd-radius);
+    flex-wrap: wrap;
+}
+
+.block {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.block-number {
+    color: var(--title-color);
+    font-size: 1.5rem;
+}
+
+.block-text {
+    color: var(--text-color);
+    font-size: 0.875rem;
+    width: 132px;
+}

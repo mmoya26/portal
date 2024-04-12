@@ -1,1 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #F3F4F6;
+    --text-color: #6B7280;
+    --title-color: #374151;
+    --bd-radius: 20px;
+    --btn-primary-color: #111827;
+    --btn-secondary-color: #F3F4F6;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: "Inter", sans-serif;
+}
+
+button {
+    all: unset;
+}
+
+.btn {
+    border-radius: var(--bd-radius);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+.btn.primary {
+    background-color: var(--btn-primary-color);
+    color: #fff;
+}
+
+.btn.secondary {
+    background-color: var(--btn-secondary-color);
+    color: #111827;
+}
