@@ -1,11 +1,12 @@
 import { Component, ViewEncapsulation, inject} from '@angular/core';
 import { RecipientDataReview } from '../interfaces/recipient-data-review';
 import { CommonModule } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-recipient-data-review-table',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ButtonModule],
   templateUrl: './recipient-data-review-table.component.html',
   styleUrl: './recipient-data-review-table.component.css',
   encapsulation: ViewEncapsulation.Emulated

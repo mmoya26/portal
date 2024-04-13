@@ -42,6 +42,8 @@
 }
 
 .header-buttons button {
+    /* all: unset; */
+    border: none;
     flex-grow: 1;
 }
 
