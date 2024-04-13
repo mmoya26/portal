@@ -21,6 +21,10 @@ body {
     font-family: "Inter", sans-serif;
 }
 
+img {
+    height: 100%;
+}
+
 button {
     all: unset;
 }
