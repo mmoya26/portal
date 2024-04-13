@@ -19,74 +19,13 @@
         <th>File Type <img src="../../assets/sort-icon-grey.svg"/></th>
         <th>Status <img src="../../assets/sort-icon-grey.svg"/></th>
       </tr>
-      <tr>
-        <td>ABC Company</td>
-        <td>1099-NEC</td>
-        <td>2022</td>
-        <td>Production</td>
-        <td><div class="status-circle"></div>Approved</td>
-        <td><div class="review-page-circle"><img src="../../assets/data-review-icon-light.svg"/></div></td>
-      </tr>
 
-      <tr>
-        <td>ABC Company</td>
-        <td>1099-NEC</td>
-        <td>2022</td>
-        <td>Production</td>
-        <td><div class="status-circle"></div>Approved</td>
-        <td><div class="review-page-circle"><img src="../../assets/data-review-icon-light.svg"/></div></td>
-      </tr>
 
-      <tr>
-        <td>ABC Company</td>
-        <td>1099-NEC</td>
-        <td>2022</td>
-        <td>Production</td>
-        <td><div class="status-circle"></div>Approved</td>
-        <td><div class="review-page-circle"><img src="../../assets/data-review-icon-light.svg"/></div></td>
-      </tr>
-
-      <tr>
-        <td>ABC Company</td>
-        <td>1099-NEC</td>
-        <td>2022</td>
-        <td>Production</td>
-        <td><div class="status-circle"></div>Approved</td>
-        <td><div class="review-page-circle"><img src="../../assets/data-review-icon-light.svg"/></div></td>
-      </tr>
-
-      <tr>
-        <td>ABC Company</td>
-        <td>1099-NEC</td>
-        <td>2022</td>
-        <td>Production</td>
-        <td><div class="status-circle"></div>Approved</td>
-        <td><div class="review-page-circle"><img src="../../assets/data-review-icon-light.svg"/></div></td>
-      </tr>
-
-      <tr>
-        <td>ABC Company</td>
-        <td>1099-NEC</td>
-        <td>2022</td>
-        <td>Production</td>
-        <td><div class="status-circle"></div>Approved</td>
-        <td><div class="review-page-circle"><img src="../../assets/data-review-icon-light.svg"/></div></td>
-      </tr>
-
-      <tr>
-        <td>ABC Company</td>
-        <td>1099-NEC</td>
-        <td>2022</td>
-        <td>Production</td>
-        <td><div class="status-circle"></div>Approved</td>
-        <td><div class="review-page-circle"><img src="../../assets/data-review-icon-light.svg"/></div></td>
-      </tr>
-
-      <tr>
-        <td>ABC Company</td>
-        <td>1099-NEC</td>
-        <td>2022</td>
-        <td>Production</td>
+      <tr *ngFor="let record of recipientDataReviewRecords">
+        <td>{{record.companyName}}</td>
+        <td>{{record.formType}}</td>
+        <td>{{record.taxYear}}</td>
+        <td>{{record.fileType}}</td>
         <td><div class="status-circle"></div>Approved</td>
         <td><div class="review-page-circle"><img src="../../assets/data-review-icon-light.svg"/></div></td>
       </tr>

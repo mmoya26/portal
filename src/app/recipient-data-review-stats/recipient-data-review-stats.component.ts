@@ -5,8 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './recipient-data-review-stats.component.html',
-  styleUrl: './recipient-data-review-stats.component.css'
+  styleUrl: './recipient-data-review-stats.component.css',
 })
 export class RecipientDataReviewStatsComponent {
-
 }
