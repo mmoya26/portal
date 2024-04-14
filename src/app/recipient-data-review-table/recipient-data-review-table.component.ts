@@ -101,18 +101,12 @@ export class RecipientDataReviewTableComponent {
     console.log(formType)
     this.confirmationService.confirm({
         target: event.target as EventTarget,
-        message: 'Are you sure that you want to proceed?',
-        header: 'Confirmation',
+        message: 'You don\'t have access to the payer or form type. Please contact your administrator.',
+        header: 'Restricted Permissions',
         icon: 'pi pi-exclamation-triangle',
         acceptIcon:"none",
         rejectIcon:"none",
         rejectButtonStyleClass:"p-button-text",
-        accept: () => {
-            this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
-        },
-        reject: () => {
-            this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
-        }
     });
   }
 }
