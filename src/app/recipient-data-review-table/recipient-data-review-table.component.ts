@@ -1,15 +1,15 @@
-import { Component, ViewEncapsulation, inject} from '@angular/core';
+import { Component} from '@angular/core';
 import { RecipientDataReview } from '../interfaces/recipient-data-review';
-import { CommonModule } from '@angular/common';
-import { ButtonModule } from 'primeng/button';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-recipient-data-review-table',
   standalone: true,
-  imports: [CommonModule, ButtonModule],
+  imports: [ConfirmDialogModule],
   templateUrl: './recipient-data-review-table.component.html',
   styleUrl: './recipient-data-review-table.component.css',
-  encapsulation: ViewEncapsulation.Emulated
+  providers: [ConfirmationService, MessageService],
 })
 export class RecipientDataReviewTableComponent {
   public recipientDataReviewRecords: RecipientDataReview[] = [
@@ -94,5 +94,26 @@ export class RecipientDataReviewTableComponent {
           status: "Approved"
           }
   ]
+
+  constructor(private confirmationService: ConfirmationService, private messageService: MessageService) {}
+
+  open(event: Event, formType: string) {
+    console.log(formType)
+    this.confirmationService.confirm({
+        target: event.target as EventTarget,
+        message: 'Are you sure that you want to proceed?',
+        header: 'Confirmation',
+        icon: 'pi pi-exclamation-triangle',
+        acceptIcon:"none",
+        rejectIcon:"none",
+        rejectButtonStyleClass:"p-button-text",
+        accept: () => {
+            this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
+        },
+        reject: () => {
+            this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+        }
+    });
+  }
 }
 

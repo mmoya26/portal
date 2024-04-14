@@ -115,3 +115,7 @@
     display: inline-block;
     margin-right: 10px;
 }
+
+.test .p-confirm-dialog {
+    padding: 20px;
+}
