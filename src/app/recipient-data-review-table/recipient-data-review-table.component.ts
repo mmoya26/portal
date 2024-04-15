@@ -105,8 +105,9 @@ export class RecipientDataReviewTableComponent {
         header: 'Restricted Permissions',
         icon: 'pi pi-exclamation-triangle',
         acceptIcon:"none",
-        rejectIcon:"none",
-        rejectButtonStyleClass:"p-button-text",
+        rejectVisible: false,
+        acceptLabel: "OK",
+
     });
   }
 }
