@@ -1,0 +1,101 @@
+.left-navigation-bar {
+    background-color: #fff;
+    border-right: 1px solid var(--border-color);
+    width: 280px;
+    height: calc(100vh - 20px);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    position: sticky;
+    top: 0;
+}
+
+.left-navigation-bar .header {
+    margin-bottom: 30px;
+}
+
+.left-navigation-bar .header img {
+    display: block;
+    margin: 0 auto;
+}
+
+.left-navigation-bar .header h2 {
+    font-weight: 500;
+    text-align: center;
+    font-size: 1.25rem;
+    color: var(--title-color);
+}
+
+.left-navigation-bar .top-links {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.left-navigation-bar ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.left-navigation-bar .footer {
+    margin-top: auto;
+}
+
+.left-navigation-bar ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    border-radius: var(--bd-radius);
+}
+
+.left-navigation-bar ul li a.active {
+    background-color: var(--btn-primary-color);
+    color: white
+}
+
+
+/* Account Card */
+
+.account-card {
+    background-color: var(--primary);
+    padding: 15px 10px;
+    border-radius: 10px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    text-decoration: none;
+}
+
+.circle {
+    padding: 14px;
+    background-color: #fff;
+    width: 48px;
+    height: 48px;
+    border-radius: 100%;
+    text-align: center;
+    font-weight: bold;
+    color: var(--title-color);
+}
+
+.account-card .user-info h4 {
+    color: white;
+    font-weight: 500;
+    font-size: 1.125rem;
+}
+
+.account-card .user-info p {
+    font-size: 0.75rem;
+    color: #E8E8E8;
+}
+
+.account-card .icon {
+    margin-left: auto;
+}

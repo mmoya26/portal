@@ -1,0 +1,53 @@
+<div class="left-navigation-bar">
+    <div class="header">
+        <img src="../../assets/LeftNavigationBar/logo.png" alt="Logo">
+        <h2>Musical Airways International</h2>
+    </div>
+
+    <div class="top-links">
+        <ul>
+            @for (link of firstLinks; track $index) {
+                @if (link.active) {
+                    <li><a href="#0" class="active"><img [src]="link.iconPath" [alt]="link.alt"><span>{{link.name}}</span></a></li>
+                } @else {
+                    <li><a href="#0"><img [src]="link.iconPath" [alt]="link.alt"><span>{{link.name}}</span></a></li>
+                }   
+            }
+        </ul>
+    
+        <ul>
+            @for (link of secondLinks; track $index) {
+                @if (link.active) {
+                    <li><a href="#0" class="active"><img [src]="link.iconPath" [alt]="link.alt"><span>{{link.name}}</span></a></li>
+                } @else {
+                    <li><a href="#0"><img [src]="link.iconPath" [alt]="link.alt"><span>{{link.name}}</span></a></li>
+                }   
+            }
+        </ul>
+    </div>
+
+    <ul class="footer">
+        <ul>
+            @for (link of footerLinks; track $index) {
+                @if (link.active) {
+                    <li><a href="#0" class="active"><img [src]="link.iconPath" [alt]="link.alt"><span>{{link.name}}</span></a></li>
+                } @else {
+                    <li><a href="#0"><img [src]="link.iconPath" [alt]="link.alt"><span>{{link.name}}</span></a></li>
+                }   
+            }
+        </ul>
+
+        <a href="#0" class="account-card">
+            <div class="circle">
+                M
+            </div>
+            <div class="user-info">
+                <h4>Miguel Moya</h4>
+                <p>Account Owner</p>
+            </div>
+            <img class="icon" src="../../assets/LeftNavigationBar/down-chevron-light-icon.svg" alt="Down arrow for options icon">
+        </a>
+    </ul>
+
+    
+</div>

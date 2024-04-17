@@ -24,12 +24,14 @@
 }
 
 :root {
-    --bg-color: #F3F4F6;
-    --text-color: #6B7280;
-    --title-color: #374151;
-    --bd-radius: 20px;
+    --primary: #111827;
+    --bg-color: #F1F5F9;
+    --text-color: #374151;
+    --title-color: #111827;
+    --bd-radius: 10px;
     --btn-primary-color: #111827;
     --btn-secondary-color: #F3F4F6;
+    --border-color: #E5E7EB;
 }
 
 body {

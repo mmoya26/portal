@@ -12,6 +12,7 @@
     overflow: scroll;
     scrollbar-width: 100px;
     scrollbar-color: #D9D9D9;
+    border: 1px solid var(--border-color);
 }
 
 .table-header {
