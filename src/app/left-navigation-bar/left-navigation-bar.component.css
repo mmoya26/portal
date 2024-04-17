@@ -1,15 +1,13 @@
 .left-navigation-bar {
     background-color: #fff;
-    border-right: 1px solid var(--border-color);
     width: 280px;
-    /* height: 100vh; */
+    height: calc(100vh - 20px);
+    min-height: 100%;
     padding: 15px;
     display: flex;
     flex-direction: column;
     border: 1px solid var(--border-color);
     border-radius: 10px;
-    position: sticky;
-    top: 0;
 }
 
 .left-navigation-bar .header {
@@ -41,7 +39,7 @@
 }
 
 .left-navigation-bar .footer {
-    margin-top: 30px;
+    margin-top: auto;
 }
 
 .left-navigation-bar ul li a {
@@ -61,7 +59,6 @@
     color: white
 }
 
-
 /* Account Card */
 
 .account-card {
@@ -72,7 +69,6 @@
     gap: 15px;
     align-items: center;
     text-decoration: none;
-    margin-top: 15px;
 }
 
 .circle {
