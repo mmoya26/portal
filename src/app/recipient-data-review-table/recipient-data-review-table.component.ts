@@ -12,6 +12,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
   providers: [ConfirmationService, MessageService],
 })
 export class RecipientDataReviewTableComponent {
+  constructor(private confirmationService: ConfirmationService, private messageService: MessageService) {}
+
   public recipientDataReviewRecords: RecipientDataReview[] = [
     {
       id: 1,
@@ -43,7 +45,7 @@ export class RecipientDataReviewTableComponent {
       formType: "1099-INT",
       taxYear: "2023",
       fileType: "Production",
-      status: "Approved"
+      status: "Rejected"
       },
       {
         id: 5,
@@ -95,8 +97,6 @@ export class RecipientDataReviewTableComponent {
           }
   ]
 
-  constructor(private confirmationService: ConfirmationService, private messageService: MessageService) {}
-
   open(event: Event, formType: string) {
     console.log(formType)
     this.confirmationService.confirm({
@@ -109,6 +109,20 @@ export class RecipientDataReviewTableComponent {
         acceptLabel: "OK",
 
     });
+  }
+
+  getStatusClass(status: string) {
+    switch(status.toLocaleLowerCase()) {
+      case 'needs review':
+        return 'needs-review'
+      case 'approved':
+        return ''
+      case 'rejected':
+        return 'rejected'
+
+      default:
+        return ''
+    }
   }
 }
 

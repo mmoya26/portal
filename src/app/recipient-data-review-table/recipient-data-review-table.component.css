@@ -1,6 +1,7 @@
 * {
     --approved: #6B7280;
-    --color-needs-review: #D97706;
+    --needs-review: #D97706;
+    --rejected: #ef4444;
 }
 
 .recipient-data-review-table-container {
@@ -83,6 +84,22 @@
     color: var(--text-color);
     width: 22%;
     vertical-align: middle;
+}
+
+.recipient-data-review-table td.needs-review {
+    color: var(--needs-review);
+}
+
+.recipient-data-review-table td.needs-review .status-circle {
+    background-color: var(--needs-review);
+}
+
+.recipient-data-review-table td.rejected {
+    color: var(--rejected);
+}
+
+.recipient-data-review-table td.rejected .status-circle {
+    background-color: var(--rejected);
 }
 
 .recipient-data-review-table tr:last-child td {
