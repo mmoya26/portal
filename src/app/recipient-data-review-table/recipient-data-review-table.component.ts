@@ -2,11 +2,12 @@ import { Component} from '@angular/core';
 import { RecipientDataReview } from '../interfaces/recipient-data-review';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { UploadFormsModalComponent } from '../upload-forms-modal/upload-forms-modal.component';
 
 @Component({
   selector: 'app-recipient-data-review-table',
   standalone: true,
-  imports: [ConfirmDialogModule],
+  imports: [ConfirmDialogModule, UploadFormsModalComponent],
   templateUrl: './recipient-data-review-table.component.html',
   styleUrl: './recipient-data-review-table.component.css',
   providers: [ConfirmationService, MessageService],
@@ -97,6 +98,8 @@ export class RecipientDataReviewTableComponent {
           }
   ]
 
+  public isUploadFormsModalVisible = false
+
   open(event: Event, formType: string) {
     console.log(formType)
     this.confirmationService.confirm({
@@ -109,6 +112,10 @@ export class RecipientDataReviewTableComponent {
         acceptLabel: "OK",
 
     });
+  }
+
+  toggleUploadForms(value: boolean) {
+    this.isUploadFormsModalVisible = value;
   }
 
   getStatusClass(status: string) {
