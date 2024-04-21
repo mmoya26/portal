@@ -98,7 +98,7 @@ export class RecipientDataReviewTableComponent {
           }
   ]
 
-  public isUploadFormsModalVisible = false
+  public isUploadFormsModalVisible = true
 
   open(event: Event, formType: string) {
     console.log(formType)

@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { DropdownModule } from 'primeng/dropdown';
 import { DialogModule } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-upload-forms-modal',
@@ -16,4 +17,7 @@ export class UploadFormsModalComponent {
   hide() {
     this.modalClosedEvent.emit(false);
   }
+
+  public formTypes: Object[] = [{formType: "1099-NEC"}, {formType: "1099-MISC"}, {formType: "1099-INT"}, {formType: "W-2"}];
+  public fileTypes: Object[] = [{fileTypes: "Production"}, {fileTypes: "Test"}];
 }
