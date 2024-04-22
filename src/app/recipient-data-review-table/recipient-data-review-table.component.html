@@ -1,4 +1,3 @@
-<app-upload-forms-modal [isVisible]="isUploadFormsModalVisible" (modalClosedEvent)="toggleUploadForms($event)"></app-upload-forms-modal>
 <div class="recipient-data-review-table-container">
     <div class="table-header">
         <div>
@@ -7,7 +6,7 @@
         </div>
 
         <div class="header-buttons">
-            <button class="btn primary upload-forms" (click)="toggleUploadForms(true)"><img src="../../assets/upload-icon-light.svg" class="upload-icon"/> Upload Forms</button>
+            <button class="btn primary upload-forms" (click)="toggleUploadForms()"><img src="../../assets/upload-icon-light.svg" class="upload-icon"/> Upload Forms</button>
             <button class="btn secondary upload-accounts"><img src="../../assets/upload-icon-dark.svg" class="upload-icon"/> Upload Accounts</button>
         </div>
     </div>

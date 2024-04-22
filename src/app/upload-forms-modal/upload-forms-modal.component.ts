@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter} from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { DropdownModule } from 'primeng/dropdown';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
@@ -12,10 +12,9 @@ import { InputTextModule } from 'primeng/inputtext';
 })
 export class UploadFormsModalComponent {
   @Input() isVisible : boolean = false
-  @Output() modalClosedEvent = new EventEmitter<boolean>();
-  
+
   hide() {
-    this.modalClosedEvent.emit(false);
+    this.isVisible = false
   }
 
   public formTypes: Object[] = [{formType: "1099-NEC"}, {formType: "1099-MISC"}, {formType: "1099-INT"}, {formType: "W-2"}];

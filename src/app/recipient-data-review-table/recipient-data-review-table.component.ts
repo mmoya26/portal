@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, Output, EventEmitter} from '@angular/core';
 import { RecipientDataReview } from '../interfaces/recipient-data-review';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -98,7 +98,7 @@ export class RecipientDataReviewTableComponent {
           }
   ]
 
-  public isUploadFormsModalVisible = true
+  @Output() showUploadFormsModalEvent = new EventEmitter<boolean>()
 
   open(event: Event, formType: string) {
     console.log(formType)
@@ -114,8 +114,8 @@ export class RecipientDataReviewTableComponent {
     });
   }
 
-  toggleUploadForms(value: boolean) {
-    this.isUploadFormsModalVisible = value;
+  toggleUploadForms() {
+    this.showUploadFormsModalEvent.emit(true);
   }
 
   getStatusClass(status: string) {

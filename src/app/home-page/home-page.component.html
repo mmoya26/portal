@@ -1,6 +1,8 @@
 <div class="page-container">
     <div class="main-content-container">
         <app-recipient-data-review-stats></app-recipient-data-review-stats>
-        <app-recipient-data-review-table></app-recipient-data-review-table>
+        <app-recipient-data-review-table (showUploadFormsModalEvent)="this.isUploadFormsModalVisible = $event" ></app-recipient-data-review-table>
     </div>
 </div>
+
+<app-upload-forms-modal [isVisible]="isUploadFormsModalVisible"></app-upload-forms-modal>
