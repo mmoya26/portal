@@ -12,5 +12,5 @@ import { UploadFormsModalComponent } from '../upload-forms-modal/upload-forms-mo
   styleUrl: './home-page.component.css'
 })
 export class HomePageComponent {
-  public isUploadFormsModalVisible = false
+  public isUploadFormsModalVisible = true
 }

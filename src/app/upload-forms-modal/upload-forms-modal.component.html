@@ -1,13 +1,18 @@
 <p-dialog header="Upload Forms" (onHide)="hide()" [modal]="true" resizable="false" [(visible)]="isVisible" styleClass="upload-forms-modal">
     <div class="form-group">
-        <label for="formType">Form Type</label>
-        <p-dropdown [options]="formTypes" optionLabel="formType" placeholder="Select a form type"></p-dropdown>
+        <label for="formType" class="input-label">Form Type</label>
+        <p-dropdown [overlayOptions]="getOverlayOptions()" [options]="formTypes" optionLabel="formType" placeholder="Select a form type"></p-dropdown>
     </div>
 
     <div class="form-group">
-        <label for="fileTypes">File Type</label>
+        <label for="taxYear" class="input-label">Tax Year</label>
+        <p-dropdown [overlayOptions]="getOverlayOptions()" [options]="taxYear" optionLabel="year" placeholder="Select a form type"></p-dropdown>
+    </div>
+
+    <div class="form-group">
+        <p class="input-label">File Type</p>
         <div class="buttons">
-            <button class="btn secondary">Production</button>
+            <button class="btn primary">Production</button>
             <button class="btn secondary">Test</button>
         </div>
     </div>
