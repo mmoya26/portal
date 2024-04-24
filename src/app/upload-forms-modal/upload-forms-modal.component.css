@@ -52,6 +52,14 @@
     gap: 10px;
 }
 
+
+::ng-deep .upload-forms-modal .p-button.p-fileupload-choose.p-fileupload-choose-selected svg {
+    margin-right: 0;
+    /* width: 16px;
+    height: 16px; */
+}
+
+
 ::ng-deep .upload-forms-modal .p-dialog-header {
     font-size: 1.5rem;
     font-weight: bold;
