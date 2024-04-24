@@ -1,4 +1,4 @@
-<p-dialog header="Upload Forms" (onHide)="hide()" [modal]="true" resizable="false" [(visible)]="isVisible" styleClass="upload-forms-modal">
+<p-dialog header="Upload Forms" [draggable]="false" (onHide)="hide()" [modal]="true" resizable="false" [(visible)]="isVisible" styleClass="upload-forms-modal">
     <div class="form-group">
         <label for="formType" class="input-label">Form Type</label>
         <p-dropdown [overlayOptions]="getOverlayOptions()" [options]="formTypes" optionLabel="formType" placeholder="Select a form type"></p-dropdown>
@@ -15,5 +15,23 @@
             <button class="btn primary">Production</button>
             <button class="btn secondary">Test</button>
         </div>
+    </div>
+
+    <div class="form-group">
+        <label for="notes" class="input-label">Tax Year</label>
+        <textarea rows="3" maxlength="10a0" autoResize="true"  pInputTextarea [(ngModel)]="notesField"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="fileUpload" class="input-label">File Upload</label>
+        <div class="choose-and-label-container">
+            <p-fileUpload class="choose-file-button" mode="basic" chooseIcon="pi pi-upload" chooseLabel="Choose a file" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" maxFileSize="1000000" (onUpload)="onUpload($event)"></p-fileUpload>
+            <p>good-file1.csv</p>
+        </div>
+    </div>
+
+    <div class="action-buttons-container">
+        <button class="btn clear">Cancel</button>
+        <button class="btn primary">Upload Form</button>
     </div>
 </p-dialog>

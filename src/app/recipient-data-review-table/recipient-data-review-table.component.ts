@@ -106,7 +106,6 @@ export class RecipientDataReviewTableComponent {
         target: event.target as EventTarget,
         message: 'You do not have access to Recipient Data Review. Please contact your team administrator.',
         header: 'Restricted Permissions',
-        icon: 'pi pi-exclamation-triangle',
         acceptIcon:"none",
         rejectVisible: false,
         acceptLabel: "OK",

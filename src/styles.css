@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import "primeicons/primeicons.css";
 
 @layer reset, primeng;
 
@@ -60,5 +61,10 @@ img {
 
 .btn.secondary {
     background-color: var(--btn-secondary-color);
-    color: #111827;
+    color: var(--primary);
+}
+
+.btn.clear {
+    background-color: transparent;
+    color: var(--primary);
 }

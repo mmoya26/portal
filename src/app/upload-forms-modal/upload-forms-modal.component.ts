@@ -1,13 +1,15 @@
 import { Component, Output, EventEmitter, Input} from '@angular/core';
 import { DropdownModule } from 'primeng/dropdown';
 import { DialogModule } from 'primeng/dialog';
-import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { OverlayOptions, OverlayListenerOptions } from 'primeng/api';
+import { FormsModule } from '@angular/forms';
+import { FileUploadModule, FileUploadEvent } from 'primeng/fileupload';
 
 @Component({
   selector: 'app-upload-forms-modal',
   standalone: true,
-  imports: [DropdownModule, DialogModule],
+  imports: [DropdownModule, DialogModule, InputTextareaModule, FormsModule, FileUploadModule],
   templateUrl: './upload-forms-modal.component.html',
   styleUrl: './upload-forms-modal.component.css'
 })
@@ -16,6 +18,12 @@ export class UploadFormsModalComponent {
   @Input() isVisible! : boolean
 
   @Output() hideUploadForms = new EventEmitter<boolean>();
+
+  notesField : String  = ''
+
+  onUpload(event : FileUploadEvent) {
+
+  }
   
   hide() {
     this.hideUploadForms.emit(false);

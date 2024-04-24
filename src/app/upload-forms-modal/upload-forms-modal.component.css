@@ -1,3 +1,7 @@
+:host {
+    --btn-paddings: 13px 40px;
+}
+
 ::ng-deep .upload-forms-modal {
     max-width: 465px;
     width: 100%;
@@ -23,6 +27,31 @@
     padding: 15px;
 }
 
+::ng-deep .upload-forms-modal .field {
+    border: 1px solid #E5E7EB;
+}
+
+::ng-deep .upload-forms-modal .notes {
+    height: 50px;
+}
+
+::ng-deep .upload-forms-modal .choose-and-label-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-color);
+}
+
+::ng-deep .upload-forms-modal .p-button.p-fileupload-choose {
+    background-color: var(--btn-secondary-color);
+    color: var(--primary);
+    padding: var(--btn-paddings);
+    border-radius: var(--bd-radius);
+    display: flex;
+    width: fit-content;
+    gap: 10px;
+}
+
 ::ng-deep .upload-forms-modal .p-dialog-header {
     font-size: 1.5rem;
     font-weight: bold;
@@ -42,5 +71,15 @@
 }
 
 ::ng-deep .upload-forms-modal .buttons button {
-    padding: 13px 40px;
+    padding: var(--btn-paddings);
+}
+
+::ng-deep .upload-forms-modal .action-buttons-container {
+    display: flex;
+    gap: 5px;
+    justify-content: flex-end;
+}
+
+::ng-deep .upload-forms-modal .action-buttons-container .btn {
+    padding: var(--btn-paddings);
 }
