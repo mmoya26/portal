@@ -42,6 +42,10 @@
     color: var(--text-color);
 }
 
+::ng-deep .upload-forms-modal .choose-and-label-container p {
+    font-size: 12px;
+}
+
 ::ng-deep .upload-forms-modal .p-button.p-fileupload-choose {
     background-color: var(--btn-secondary-color);
     color: var(--primary);

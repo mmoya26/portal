@@ -1,32 +1,37 @@
 <p-dialog header="Upload Forms" [draggable]="false" (onHide)="hide()" [modal]="true" resizable="false" [(visible)]="isVisible" styleClass="upload-forms-modal">
     <div class="form-group">
         <label for="formType" class="input-label">Form Type</label>
-        <p-dropdown [overlayOptions]="getOverlayOptions()" [options]="formTypes" optionLabel="formType" placeholder="Select a form type"></p-dropdown>
+        <p-dropdown (onChange)="handleDropdown($event)" [overlayOptions]="getOverlayOptions()" [options]="formTypes" optionLabel="formType" placeholder="Select a form type"></p-dropdown>
     </div>
 
     <div class="form-group">
         <label for="taxYear" class="input-label">Tax Year</label>
-        <p-dropdown [overlayOptions]="getOverlayOptions()" [options]="taxYear" optionLabel="year" placeholder="Select a form type"></p-dropdown>
+        <p-dropdown (onChange)="handleDropdown($event)" [overlayOptions]="getOverlayOptions()" [options]="taxYear" optionLabel="year" placeholder="Select a form type"></p-dropdown>
     </div>
 
     <div class="form-group">
         <p class="input-label">File Type</p>
         <div class="buttons">
-            <button class="btn primary">Production</button>
-            <button class="btn secondary">Test</button>
+            <button class="btn primary" (click)="handleFileType($event)">Production</button>
+            <button class="btn secondary" (click)="handleFileType($event)">Test</button>
         </div>
     </div>
 
     <div class="form-group">
-        <label for="notes" class="input-label">Tax Year</label>
-        <textarea rows="3" maxlength="10a0" autoResize="true"  pInputTextarea [(ngModel)]="notesField"></textarea>
+        <label for="notes" class="input-label">Notes</label>
+        <textarea rows="3" maxlength="100" autoResize="true"  pInputTextarea [(ngModel)]="this.form.notes"></textarea>
     </div>
 
     <div class="form-group">
         <label for="fileUpload" class="input-label">File Upload</label>
         <div class="choose-and-label-container">
-            <p-fileUpload class="choose-file-button" mode="basic" chooseIcon="pi pi-upload" cancelLabel="Choose a file" chooseLabel="Choose a file" uploadLabel="Choose a file" name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" accept="image/*" maxFileSize="1000000" (onUpload)="onUpload($event)"></p-fileUpload>
-            <p>good-file1.csv</p>
+            <p-fileUpload class="choose-file-button" mode="basic" chooseIcon="pi pi-upload" 
+                cancelLabel="Choose a file" chooseLabel="Choose a file" 
+                uploadLabel="Choose a file" name="demo[]" 
+                url="https://www.primefaces.org/cdn/api/upload.php" 
+                accept="image/*" maxFileSize="1000000" [auto]="true" (onUpload)="handleFileUploaded($event)">
+            </p-fileUpload>
+            <p>{{form.fileUploaded ? form.fileUploaded : 'No file uploaded.'}}</p>
         </div>
     </div>
 
