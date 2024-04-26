@@ -44,6 +44,7 @@
 
 ::ng-deep .upload-forms-modal .choose-and-label-container p {
     font-size: 12px;
+    width: 150px;
 }
 
 ::ng-deep .upload-forms-modal .p-button.p-fileupload-choose {
@@ -67,7 +68,6 @@
     /* width: 16px;
     height: 16px; */
 }
-
 
 ::ng-deep .upload-forms-modal .p-dialog-header {
     font-size: 1.5rem;

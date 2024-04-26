@@ -20,12 +20,12 @@ export class UploadFormsModalComponent {
   @Input() isVisible! : boolean
   @Output() hideUploadForms = new EventEmitter<boolean>();
 
-  uploadFormsForm = new FormGroup({
-    formType: new FormControl(''),
-    taxYear: new FormControl(''),
-    isFileProductionType: new FormControl(false),
-    notes: new FormControl(''),
-    fileUploaded: new FormControl('')
+  uploadFormsForm = new FormGroup<UploadForm>({
+    formType: new FormControl('', {nonNullable: true}),
+    taxYear: new FormControl('', {nonNullable: true}),
+    isFileProductionType: new FormControl(false , {nonNullable: true}),
+    notes: new FormControl('', {nonNullable: true}),
+    fileUploaded: new FormControl('', {nonNullable: true})
   })
 
   handleFileUploaded({files} : FileUploadEvent) {

@@ -13,14 +13,16 @@
         <div class="form-group">
             <p class="input-label">File Type</p>
             <div class="buttons">
-                <button [ngClass]="{'active' : this.uploadFormsForm.get('isFileProductionType')?.value === true}" type="button" class="btn secondary" (click)="handleFileType($event)">Production</button>
-                <button [ngClass]="{'active' : this.uploadFormsForm.get('isFileProductionType')?.value === false}" type="button" class="btn secondary" (click)="handleFileType($event)">Test</button>
+                <button [ngClass]="{'active' : this.uploadFormsForm.value.isFileProductionType === true}" type="button" class="btn secondary" (click)="handleFileType($event)">Production</button>
+                <button [ngClass]="{'active' : this.uploadFormsForm.value.isFileProductionType === false}" type="button" class="btn secondary" (click)="handleFileType($event)">Test</button>
             </div>
         </div>
     
         <div class="form-group">
             <label for="notes" class="input-label">Notes</label>
             <textarea formControlName="notes" rows="3" maxlength="100" autoResize="true" pInputTextarea></textarea>
+
+            
         </div>
     
         <div class="form-group">
@@ -28,7 +30,7 @@
             <div class="choose-and-label-container">
                 <p-fileUpload ngDefaultControl class="choose-file-button" mode="basic" chooseIcon="pi pi-upload"  chooseLabel="Choose a file" url="https://www.primefaces.org/cdn/api/upload.php" 
                 accept="image/*" maxFileSize="1000000" [auto]="true" formControlName="fileUploaded" (onUpload)="handleFileUploaded($event)"></p-fileUpload>
-                <p>{{this.uploadFormsForm.get('fileUploaded')?.value }}</p>
+                <p class="file-name">{{this.uploadFormsForm.value.fileUploaded}}</p>
             </div>
         </div>
     
@@ -36,5 +38,6 @@
             <button class="btn clear" (click)="hide()">Cancel</button>
             <button class="btn primary" type="submit">Upload Form</button>
         </div>
+
     </form>
 </p-dialog>
