@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RecipientDataReview } from '../interfaces/recipient-data-review';
+import { RecipientDataReviewRecord } from '../interfaces/recipient-data-review-record';
 import { v4 as uuidv4 } from 'uuid'
 
 @Injectable({
@@ -7,33 +7,11 @@ import { v4 as uuidv4 } from 'uuid'
 })
 export class RecipientDataReviewService {
 
-  public recipientDataReviewRecords: RecipientDataReview[] = [
-    {
-      id: uuidv4(),
-      formType: "1099-NEC",
-      taxYear: "2023",
-      isFileProductionType: true,
-      notes: "Test Notes",
-      fileUploaded: "Photo.png",
-      status: "Approved",
-      companyName: "TST Company"
-    },
-
-    {
-      id: uuidv4(),
-      formType: "1099-MISC",
-      taxYear: "2022",
-      isFileProductionType: false,
-      notes: "More Notes",
-      fileUploaded: "Photo_2.png",
-      status: "Needs Review",
-      companyName: "CCB Company"
-    },
-  ]
+  public recipientDataReviewRecords: RecipientDataReviewRecord[] = []
 
   constructor() { }
 
-  updateRecords(record: any) {
+  updateRecords(record: RecipientDataReviewRecord) {
     this.recipientDataReviewRecords.push(record);
   }
 

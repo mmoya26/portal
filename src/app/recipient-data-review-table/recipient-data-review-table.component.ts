@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, inject} from '@angular/core';
-import { RecipientDataReview } from '../interfaces/recipient-data-review';
+import { RecipientDataReviewRecord } from '../interfaces/recipient-data-review-record';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { UploadFormsModalComponent } from '../upload-forms-modal/upload-forms-modal.component';
@@ -22,18 +22,7 @@ export class RecipientDataReviewTableComponent {
     this.recipientDataReviewRecords = this.dataReviewService.getAllRecords();
   }
 
-  public recipientDataReviewRecords: RecipientDataReview[] = [
-    {
-      id: uuidv4(),
-      formType: "1099-NEC",
-      taxYear: "2023",
-      isFileProductionType: true,
-      notes: "Test Notes",
-      fileUploaded: "Photo.png",
-      status: "Approved",
-      companyName: "TST Company"
-    },
-  ]
+  public recipientDataReviewRecords: RecipientDataReviewRecord[] = []
 
   @Output() showUploadFormsModalEvent = new EventEmitter<boolean>()
 

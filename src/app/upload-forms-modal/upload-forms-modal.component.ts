@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input} from '@angular/core';
+import { Component, Output, EventEmitter, Input, inject} from '@angular/core';
 import { DropdownModule, DropdownChangeEvent } from 'primeng/dropdown';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextareaModule } from 'primeng/inputtextarea';
@@ -9,6 +9,8 @@ import { UploadForm } from '../interfaces/upload-form';
 import { CommonModule } from '@angular/common';
 import { TooltipModule } from 'primeng/tooltip';
 import { v4 as uuidv4 } from 'uuid'
+import { RecipientDataReviewService } from '../service/recipient-data-review.service';
+import { RecipientDataReviewRecord } from '../interfaces/recipient-data-review-record';
 
 @Component({
   selector: 'app-upload-forms-modal',
@@ -19,19 +21,20 @@ import { v4 as uuidv4 } from 'uuid'
 })
 export class UploadFormsModalComponent {
 
+  dataReviewService: RecipientDataReviewService = inject(RecipientDataReviewService);
+
   @Input() isVisible! : boolean
   @Output() hideUploadForms = new EventEmitter<boolean>();
-  @Output() uploadedFormEvent = new EventEmitter()
 
   uploadFormsForm = new FormGroup<UploadForm>({
+    id: new FormControl('', {nonNullable: true}),
     formType: new FormControl('', {nonNullable: true}),
     taxYear: new FormControl('', {nonNullable: true}),
     isFileProductionType: new FormControl(false , {nonNullable: true}),
     notes: new FormControl('', {nonNullable: true}),
     fileUploaded: new FormControl('', {nonNullable: true}),
-    id: new FormControl('', {nonNullable: true}),
     status: new FormControl('Needs Review', {nonNullable: true}),
-    companyName: new FormControl('TST Company', {nonNullable: true}),
+    companyName: new FormControl('', {nonNullable: true}),
   })
 
   handleFileUploaded({files} : FileUploadEvent) {
@@ -49,11 +52,31 @@ export class UploadFormsModalComponent {
   }
 
   onSubmit() {
-    this.uploadFormsForm.patchValue({id: uuidv4()});
 
-    this.uploadedFormEvent.emit(this.uploadFormsForm.value);
+    // Cast record from FormControls to be RecipientDataReviewRecord and generate UUID and for record
+    let record = <RecipientDataReviewRecord>this.uploadFormsForm.value
+    record.id = uuidv4();
+    record.companyName = this.generateRandomCompanyName();
+
+
+    console.log(this.uploadFormsForm.value);
+    this.dataReviewService.updateRecords(record);
 
     this.uploadFormsForm.reset();
+
+    console.log(this.uploadFormsForm.value);
+  
+  
+  }
+
+  generateRandomCompanyName(): string {
+    const prefixes = ['Tech', 'Global', 'Innovative', 'Dynamic', 'Creative', 'Future', 'Smart', 'Digital', 'Virtual', 'Cyber'];
+    const suffixes = ['Solutions', 'Labs', 'Systems', 'Technologies', 'Services', 'Enterprises', 'Innovations', 'Co', 'Corp', 'Group'];
+
+    const randomPrefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+    const randomSuffix = suffixes[Math.floor(Math.random() * suffixes.length)];
+
+    return `${randomPrefix} ${randomSuffix}`;
   }
 
   getOverlayOptions(): OverlayOptions {

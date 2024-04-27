@@ -1,4 +1,4 @@
-export interface RecipientDataReview {
+export interface RecipientDataReviewRecord {
     id: string;
     formType: string;
     taxYear: string;
