@@ -1,8 +1,10 @@
 export interface RecipientDataReview {
-    id: number;
-    companyName: string;
+    id: string;
     formType: string;
     taxYear: string;
-    fileType: string;
-    status: string
+    isFileProductionType: boolean;
+    notes: string;
+    fileUploaded: string;
+    status: string;
+    companyName: string;
 }

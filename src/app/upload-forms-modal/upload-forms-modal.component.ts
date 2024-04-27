@@ -8,6 +8,7 @@ import { FileUploadModule, FileUploadEvent } from 'primeng/fileupload';
 import { UploadForm } from '../interfaces/upload-form';
 import { CommonModule } from '@angular/common';
 import { TooltipModule } from 'primeng/tooltip';
+import { v4 as uuidv4 } from 'uuid'
 
 @Component({
   selector: 'app-upload-forms-modal',
@@ -20,13 +21,17 @@ export class UploadFormsModalComponent {
 
   @Input() isVisible! : boolean
   @Output() hideUploadForms = new EventEmitter<boolean>();
+  @Output() uploadedFormEvent = new EventEmitter()
 
   uploadFormsForm = new FormGroup<UploadForm>({
     formType: new FormControl('', {nonNullable: true}),
     taxYear: new FormControl('', {nonNullable: true}),
     isFileProductionType: new FormControl(false , {nonNullable: true}),
     notes: new FormControl('', {nonNullable: true}),
-    fileUploaded: new FormControl('', {nonNullable: true})
+    fileUploaded: new FormControl('', {nonNullable: true}),
+    id: new FormControl('', {nonNullable: true}),
+    status: new FormControl('Needs Review', {nonNullable: true}),
+    companyName: new FormControl('TST Company', {nonNullable: true}),
   })
 
   handleFileUploaded({files} : FileUploadEvent) {
@@ -38,14 +43,17 @@ export class UploadFormsModalComponent {
     const target = event.target as HTMLButtonElement;
     target.innerHTML.toLocaleLowerCase() === 'production' ? this.uploadFormsForm.patchValue({isFileProductionType: true}) : this.uploadFormsForm.patchValue({isFileProductionType: false});
   }
-
   
   hide() {
     this.hideUploadForms.emit(false);
   }
 
   onSubmit() {
-    console.log(this.uploadFormsForm.value);
+    this.uploadFormsForm.patchValue({id: uuidv4()});
+
+    this.uploadedFormEvent.emit(this.uploadFormsForm.value);
+
+    this.uploadFormsForm.reset();
   }
 
   getOverlayOptions(): OverlayOptions {
