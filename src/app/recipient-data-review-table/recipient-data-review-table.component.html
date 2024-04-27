@@ -26,7 +26,7 @@
           <td>{{record.formType}}</td>
           <td>{{record.taxYear}}</td>
           <td>{{record.isFileProductionType ? "Production" : "Test"}}</td>
-          <td [classList]="getStatusClass(record.status)"><div class="status-circle"></div>{{record.status}}</td>
+          <td [classList]="getStatusClass(record.status || 'Needs Review')"><div class="status-circle"></div>{{record.status || 'Needs Review'}}</td>
           <td><div class="review-page-circle" (click)="open($event, record.formType)"><img src="../../assets/data-review-icon-light.svg"/></div></td>
         </tr>
       }
