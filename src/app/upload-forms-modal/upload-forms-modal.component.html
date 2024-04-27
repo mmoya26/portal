@@ -1,4 +1,8 @@
 <p-dialog  header="Upload Forms" [draggable]="false" (onHide)="hide()" [modal]="true" resizable="false" [(visible)]="isVisible" styleClass="upload-forms-modal">
+    <p-header class="header">
+        <h2 class="p-dialog-header">Upload Forms</h2>
+        <i class="pi pi-info-circle" tooltipPosition="top" pTooltip="We could enter additional information about the upload forms modal in here." style="font-size: 1rem"></i>
+    </p-header>
     <form [formGroup]="uploadFormsForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label for="formType" class="input-label">Form Type</label>

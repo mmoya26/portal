@@ -21,6 +21,11 @@
     gap: 20px;
 }
 
+::ng-deep .p-tooltip .p-tooltip-text{
+    padding: 10px 10px;
+    font-size: 0.875rem;
+}
+
 ::ng-deep .upload-forms-modal .p-dropdown {
     border: 1px solid #E5E7EB;
     width: 100%;
@@ -69,11 +74,22 @@
     height: 16px; */
 }
 
-::ng-deep .upload-forms-modal .p-dialog-header {
+::ng-deep .upload-forms-modal div.p-dialog-header.ng-tns-c1400914602-1.ng-star-inserted {
+    display: flex;
+    align-items: center;
+    padding: 20px 20px 0 20px;
+}
+
+::ng-deep .upload-forms-modal .header {
+    display: flex;
+    align-items: center;
+    gap: 10px
+}
+
+::ng-deep .upload-forms-modal .header h2 {
     font-size: 1.5rem;
     font-weight: bold;
     color: var(--title-color);
-    padding: 20px 20px 0 20px;
 }
 
 ::ng-deep .upload-forms-modal .form-group {

@@ -7,11 +7,12 @@ import { FormsModule, FormControl, ReactiveFormsModule, FormGroup } from '@angul
 import { FileUploadModule, FileUploadEvent } from 'primeng/fileupload';
 import { UploadForm } from '../interfaces/upload-form';
 import { CommonModule } from '@angular/common';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-upload-forms-modal',
   standalone: true,
-  imports: [DropdownModule, DialogModule, InputTextareaModule, FormsModule, FileUploadModule, ReactiveFormsModule, CommonModule],
+  imports: [DropdownModule, DialogModule, InputTextareaModule, FormsModule, FileUploadModule, ReactiveFormsModule, CommonModule, TooltipModule],
   templateUrl: './upload-forms-modal.component.html',
   styleUrl: './upload-forms-modal.component.css'
 })
