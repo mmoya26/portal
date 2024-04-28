@@ -33,6 +33,7 @@
     --btn-primary-color: #111827;
     --btn-secondary-color: #F3F4F6;
     --border-color: #E5E7EB;
+    --invalid: #ef4444;
 }
 
 body {

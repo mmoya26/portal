@@ -8,6 +8,10 @@
     /* height: 100%; */
 }
 
+::ng-deep .upload-forms-modal .invalid-field {
+    color: var(--invalid);
+}
+
 ::ng-deep .upload-forms-modal .input-label {
     color: var(--title-color);
     font-weight: 500;

@@ -1,4 +1,4 @@
-<p-dialog  header="Upload Forms" [draggable]="false" (onHide)="hide()" [modal]="true" resizable="false" [(visible)]="isVisible" styleClass="upload-forms-modal">
+<p-dialog header="Upload Forms" [draggable]="false" (onHide)="hide()" [modal]="true" resizable="false" [(visible)]="isVisible" styleClass="upload-forms-modal">
     <p-header class="header">
         <h2 class="p-dialog-header">Upload Forms</h2>
         <i class="pi pi-info-circle" tooltipPosition="top" pTooltip="We could enter additional information about the upload forms modal in here." style="font-size: 1rem"></i>
@@ -7,26 +7,26 @@
         <div class="form-group">
             <label for="formType" class="input-label">Form Type</label>
             <p-dropdown formControlName="formType" [overlayOptions]="getOverlayOptions()" [options]="formTypes" optionDisabled={{true}} placeholder="Select a form type"></p-dropdown>
+            <div *ngIf="formType?.invalid && formType?.touched" class="invalid-field">Please select a Form Type.</div>
         </div>
     
         <div class="form-group">
             <label for="taxYear" class="input-label">Tax Year</label>
-            <p-dropdown formControlName="taxYear" [overlayOptions]="getOverlayOptions()" [options]="taxYear" optionDisabled={{true}} placeholder="Select a form type"></p-dropdown>
+            <p-dropdown formControlName="taxYear" [overlayOptions]="getOverlayOptions()" [options]="years" optionDisabled={{true}} placeholder="Select a tax year"></p-dropdown>
+            <div *ngIf="taxYear?.invalid && taxYear?.touched" class="invalid-field">Please select a Tax Year.</div>
         </div>
     
         <div class="form-group">
             <p class="input-label">File Type</p>
             <div class="buttons">
-                <button [ngClass]="{'active' : this.uploadForm.value.isFileProductionType === true}" type="button" class="btn secondary" (click)="handleFileType($event)">Production</button>
-                <button [ngClass]="{'active' : this.uploadForm.value.isFileProductionType === false}" type="button" class="btn secondary" (click)="handleFileType($event)">Test</button>
+                <button [ngClass]="{'active' : isFileProductionType?.value === true}" type="button" class="btn secondary" (click)="handleFileType($event)">Production</button>
+                <button [ngClass]="{'active' : isFileProductionType?.value === false}" type="button" class="btn secondary" (click)="handleFileType($event)">Test</button>
             </div>
         </div>
     
         <div class="form-group">
             <label for="notes" class="input-label">Notes</label>
             <textarea formControlName="notes" rows="3" maxlength="100" autoResize="true" pInputTextarea></textarea>
-
-            
         </div>
     
         <div class="form-group">
@@ -34,14 +34,16 @@
             <div class="choose-and-label-container">
                 <p-fileUpload ngDefaultControl class="choose-file-button" mode="basic" chooseIcon="pi pi-upload"  chooseLabel="Choose a file" url="https://www.primefaces.org/cdn/api/upload.php" 
                 accept="image/*" maxFileSize="1000000" [auto]="true" formControlName="fileUploaded" (onUpload)="handleFileUploaded($event)"></p-fileUpload>
-                <p class="file-name">{{this.uploadForm.value.fileUploaded}}</p>
+                <p class="file-name">{{fileUploaded?.value}}</p>
             </div>
+            <div *ngIf="fileUploaded?.invalid && fileUploaded?.touched" class="invalid-field">Please upload a File.</div>
         </div>
     
         <div class="action-buttons-container">
-            <button class="btn clear" (click)="hide()">Cancel</button>
+            <button class="btn clear" (click)="hide();">Cancel</button>
             <button class="btn primary" type="submit">Upload Form</button>
         </div>
 
+        {{this.uploadForm.value | json}}
     </form>
 </p-dialog>

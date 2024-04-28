@@ -1,11 +1,11 @@
 // Angular Imports
-import { Component, Output, EventEmitter, Input, inject, OnInit} from '@angular/core';
-import { FormsModule, FormControl, ReactiveFormsModule, FormGroup, FormBuilder } from '@angular/forms';
+import { Component, Output, EventEmitter, Input, inject} from '@angular/core';
+import { FormsModule, FormControl, ReactiveFormsModule, FormBuilder, Validators, ValidationErrors } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 // Interfaces & Services
 import { RecipientDataReviewRecord } from '../interfaces/recipient-data-review-record';
-import { UploadForm } from '../interfaces/upload-form';
+// import { UploadForm } from '../interfaces/upload-form';
 import { RecipientDataReviewService } from '../service/recipient-data-review.service';
 
 // PrimeNG imports
@@ -26,37 +26,44 @@ import { v4 as uuidv4 } from 'uuid'
   templateUrl: './upload-forms-modal.component.html',
   styleUrl: './upload-forms-modal.component.css'
 })
-export class UploadFormsModalComponent implements OnInit {
-  uploadForm =  this.formBuilder.group({
-    id: [uuidv4()],
-    formType: [''],
-    taxYear: [''],
-    isFileProductionType: [false],
-    notes: [''],
-    fileUploaded: [''],
-    status: ['Needs Review'],
-    companyName: ['M&M Company']
-  });
+export class UploadFormsModalComponent {
 
   constructor(private formBuilder: FormBuilder) {}
-
-  dataReviewService: RecipientDataReviewService = inject(RecipientDataReviewService);
 
   @Input() isVisible! : boolean
   @Output() hideUploadForms = new EventEmitter<boolean>();
 
-  // uploadForm = new FormGroup<UploadForm>({
-  //   id: new FormControl('', {nonNullable: true}),
-  //   formType: new FormControl('', {nonNullable: true}),
-  //   taxYear: new FormControl('', {nonNullable: true}),
-  //   isFileProductionType: new FormControl(false , {nonNullable: true}),
-  //   notes: new FormControl('', {nonNullable: true}),
-  //   fileUploaded: new FormControl('', {nonNullable: true}),
-  //   status: new FormControl('Needs Review', {nonNullable: true}),
-  //   companyName: new FormControl('', {nonNullable: true}),
-  // })
+  dataReviewService: RecipientDataReviewService = inject(RecipientDataReviewService);
 
-  ngOnInit() {
+  uploadForm =  this.formBuilder.group({
+    id: [uuidv4()],
+    formType: ['', [Validators.required]],
+    taxYear: ['', [Validators.required]],
+    isFileProductionType: [false],
+    notes: [''],
+    fileUploaded: ['', [Validators.required]],
+    status: ['Needs Review'],
+    companyName: ['M&M Company']
+  });
+
+  get formType() {
+    return this.uploadForm.get('formType');
+  }
+
+  get notes() {
+    return this.uploadForm.get('notes');
+  }
+
+  get isFileProductionType() {
+    return this.uploadForm.get('isFileProductionType');
+  }
+
+  get fileUploaded() {
+    return this.uploadForm.get('fileUploaded');    
+  }
+
+  get taxYear() {
+    return this.uploadForm.get('taxYear');
   }
 
   handleFileUploaded({files} : FileUploadEvent) {
@@ -75,12 +82,19 @@ export class UploadFormsModalComponent implements OnInit {
 
   onSubmit() {
 
-    // Cast record from FormControls to be RecipientDataReviewRecord and generate UUID and for record
-    let record = <RecipientDataReviewRecord>this.uploadForm.value
+    if(this.uploadForm.valid) {
+      // Cast record from FormControls to be RecipientDataReviewRecord and generate UUID and for record
+      let record = <RecipientDataReviewRecord>this.uploadForm.value
 
-    this.dataReviewService.updateRecords(record);
+      this.dataReviewService.updateRecords(record);
 
-    this.uploadForm.reset({id: uuidv4(), formType: '', taxYear: '', isFileProductionType: false, notes: '', fileUploaded: '', status: 'Needs Review', companyName: 'M&M Company' });
+      this.uploadForm.reset({id: uuidv4(), formType: '', taxYear: '', isFileProductionType: false, notes: '', fileUploaded: '', status: 'Needs Review', companyName: 'M&M Company' });
+      this.uploadForm.markAsPristine();
+    } else {
+      console.log("Upload forms invalid...");
+      this.uploadForm.markAllAsTouched();
+    }
+    
   }
 
   getOverlayOptions(): OverlayOptions {
@@ -95,5 +109,5 @@ export class UploadFormsModalComponent implements OnInit {
 }
 
   public formTypes: Object[] = ["1099-NEC", "1099-MISC",  "1099-INT", "W-2"];
-  public taxYear: Object[] = ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"];
+  public years: Object[] = ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023"];
 }
