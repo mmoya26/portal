@@ -1,11 +1,10 @@
 // Angular Imports
 import { Component, Output, EventEmitter, Input, inject} from '@angular/core';
-import { FormsModule, FormControl, ReactiveFormsModule, FormBuilder, Validators, ValidationErrors } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 // Interfaces & Services
 import { RecipientDataReviewRecord } from '../interfaces/recipient-data-review-record';
-// import { UploadForm } from '../interfaces/upload-form';
 import { RecipientDataReviewService } from '../service/recipient-data-review.service';
 
 // PrimeNG imports
@@ -79,22 +78,20 @@ export class UploadFormsModalComponent {
   }
 
   onSubmit() {
-
     if(this.uploadForm.valid) {
-      // Cast record from FormControls to be RecipientDataReviewRecord and generate UUID and for record
+      // Cast record from FormControls to be RecipientDataReviewRecord before emitting event
       let record = <RecipientDataReviewRecord>this.uploadForm.value
-
       this.dataReviewService.emit("addRecipientDataReviewRecord", record);
-
-      // this.dataReviewService.updateRecords(record);
-
-      this.uploadForm.reset({id: uuidv4(), formType: '', taxYear: '', isFileProductionType: false, notes: '', fileUploaded: '', status: 'Needs Review', companyName: 'M&M Company' });
-      this.uploadForm.markAsPristine();
+      this.resetForm();
     } else {
       console.log("Upload forms invalid...");
       this.uploadForm.markAllAsTouched();
     }
-    
+  }
+
+  resetForm() {
+    this.uploadForm.reset({id: uuidv4(), formType: '', taxYear: '', isFileProductionType: false, notes: '', fileUploaded: '', status: 'Needs Review', companyName: 'M&M Company' });
+    this.uploadForm.markAsPristine();
   }
 
   getOverlayOptions(): OverlayOptions {
