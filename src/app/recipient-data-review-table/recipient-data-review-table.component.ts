@@ -16,10 +16,11 @@ import { RecipientDataReviewService } from '../service/recipient-data-review.ser
 })
 export class RecipientDataReviewTableComponent {
 
-  dataReviewService: RecipientDataReviewService = inject(RecipientDataReviewService);
-
-  constructor(private confirmationService: ConfirmationService, private messageService: MessageService) {
+  constructor(private confirmationService: ConfirmationService, private messageService: MessageService, private dataReviewService: RecipientDataReviewService) {
     this.recipientDataReviewRecords = this.dataReviewService.getAllRecords();
+    this.dataReviewService.listen('addRecipientDataReviewRecord', (event) => {
+      this.dataReviewService.updateRecords(event);
+    })
   }
 
   public recipientDataReviewRecords: RecipientDataReviewRecord[] = []

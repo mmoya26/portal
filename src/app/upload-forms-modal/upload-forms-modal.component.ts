@@ -28,12 +28,10 @@ import { v4 as uuidv4 } from 'uuid'
 })
 export class UploadFormsModalComponent {
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private dataReviewService: RecipientDataReviewService) {}
 
   @Input() isVisible! : boolean
   @Output() hideUploadForms = new EventEmitter<boolean>();
-
-  dataReviewService: RecipientDataReviewService = inject(RecipientDataReviewService);
 
   uploadForm =  this.formBuilder.group({
     id: [uuidv4()],
@@ -86,7 +84,9 @@ export class UploadFormsModalComponent {
       // Cast record from FormControls to be RecipientDataReviewRecord and generate UUID and for record
       let record = <RecipientDataReviewRecord>this.uploadForm.value
 
-      this.dataReviewService.updateRecords(record);
+      this.dataReviewService.emit("addRecipientDataReviewRecord", record);
+
+      // this.dataReviewService.updateRecords(record);
 
       this.uploadForm.reset({id: uuidv4(), formType: '', taxYear: '', isFileProductionType: false, notes: '', fileUploaded: '', status: 'Needs Review', companyName: 'M&M Company' });
       this.uploadForm.markAsPristine();
