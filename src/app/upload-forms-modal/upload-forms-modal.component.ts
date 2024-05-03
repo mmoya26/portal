@@ -81,7 +81,7 @@ export class UploadFormsModalComponent {
     if(this.uploadForm.valid) {
       // Cast record from FormControls to be RecipientDataReviewRecord before emitting event
       let record = <RecipientDataReviewRecord>this.uploadForm.value
-      this.dataReviewService.emit("addRecipientDataReviewRecord", record);
+      this.dataReviewService.updateRecords(record);
       this.resetForm();
     } else {
       console.log("Upload forms invalid...");

@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, inject} from '@angular/core';
+import { Component, Output, EventEmitter, inject, OnInit} from '@angular/core';
 import { RecipientDataReviewRecord } from '../interfaces/recipient-data-review-record';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -14,18 +14,21 @@ import { RecipientDataReviewService } from '../service/recipient-data-review.ser
   styleUrl: './recipient-data-review-table.component.css',
   providers: [ConfirmationService, MessageService],
 })
-export class RecipientDataReviewTableComponent {
+export class RecipientDataReviewTableComponent implements OnInit{
 
   constructor(private confirmationService: ConfirmationService, private messageService: MessageService, private dataReviewService: RecipientDataReviewService) {
-    this.recipientDataReviewRecords = this.dataReviewService.getAllRecords();
-    this.dataReviewService.listen('addRecipientDataReviewRecord', (event) => {
-      this.dataReviewService.updateRecords(event);
-    })
   }
 
   public recipientDataReviewRecords: RecipientDataReviewRecord[] = []
 
   @Output() showUploadFormsModalEvent = new EventEmitter<boolean>()
+
+
+  ngOnInit(): void {
+    this.dataReviewService.recipientDataReviewRecords$.subscribe((records) => {
+      this.recipientDataReviewRecords = records;
+    });
+  }
 
   open(event: Event, formType: string) {
     console.log(formType)
