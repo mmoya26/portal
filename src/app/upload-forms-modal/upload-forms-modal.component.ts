@@ -33,8 +33,6 @@ export class UploadFormsModalComponent implements OnInit {
   @Input() isVisible! : boolean
   @Output() hideUploadForms = new EventEmitter<boolean>();
 
-  currentRecord: RecipientDataReviewRecord;
-
   uploadForm = this.formBuilder.group({
     id: [''],
     formType: ['', [Validators.required]],

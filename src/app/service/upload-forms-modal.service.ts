@@ -14,7 +14,7 @@ export class UploadFormsModalService {
   private _currentRecord: BehaviorSubject<RecipientDataReviewRecord> = new BehaviorSubject<RecipientDataReviewRecord>(
     {
       id: uuidv4(), 
-      companyName: '', 
+      companyName: 'John & Johnson', 
       fileUploaded: '', 
       formType: '', 
       isFileProductionType: false, 
@@ -31,7 +31,7 @@ export class UploadFormsModalService {
   }
 
   resetCurrentRecord() {
-    this._currentRecord.next({id: uuidv4(), companyName: '', fileUploaded: '', formType: '', isFileProductionType: false, notes: '', status: 'Needs Review', taxYear: ''})
+    this._currentRecord.next({id: uuidv4(), companyName: 'John & Johnson', fileUploaded: '', formType: '', isFileProductionType: false, notes: '', status: 'Needs Review', taxYear: ''})
   }
 
   constructor(private dataReviewService: RecipientDataReviewService) { }
