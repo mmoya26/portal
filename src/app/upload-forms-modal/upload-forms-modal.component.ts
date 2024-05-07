@@ -84,7 +84,7 @@ export class UploadFormsModalComponent implements OnInit {
   
   hide() {
     this.hideUploadForms.emit(false);
-    this.uploadFormsModalService.resetCurrentRecord();
+    this.resetForm();
   }
 
   onSubmit() {
