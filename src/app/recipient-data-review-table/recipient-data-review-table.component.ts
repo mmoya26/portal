@@ -5,6 +5,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { UploadFormsModalComponent } from '../upload-forms-modal/upload-forms-modal.component';
 import { v4 as uuidv4 } from 'uuid'
 import { RecipientDataReviewService } from '../service/recipient-data-review.service';
+import { UploadFormsModalService } from '../service/upload-forms-modal.service';
 
 @Component({
   selector: 'app-recipient-data-review-table',
@@ -16,10 +17,10 @@ import { RecipientDataReviewService } from '../service/recipient-data-review.ser
 })
 export class RecipientDataReviewTableComponent implements OnInit{
 
-  constructor(private confirmationService: ConfirmationService, private messageService: MessageService, private dataReviewService: RecipientDataReviewService) {
+  constructor(private confirmationService: ConfirmationService, private messageService: MessageService, private dataReviewService: RecipientDataReviewService, private uploadFormsModalService: UploadFormsModalService) {
   }
 
-  public recipientDataReviewRecords: RecipientDataReviewRecord[] = []
+  public recipientDataReviewRecords: RecipientDataReviewRecord[] = [];
 
   @Output() showUploadFormsModalEvent = new EventEmitter<boolean>()
 
@@ -30,16 +31,18 @@ export class RecipientDataReviewTableComponent implements OnInit{
     });
   }
 
-  open(event: Event, formType: string) {
-    console.log(formType)
-    this.confirmationService.confirm({
-        target: event.target as EventTarget,
-        message: 'You do not have access to Recipient Data Review. Please contact your team administrator.',
-        header: 'Restricted Permissions',
-        acceptIcon:"none",
-        rejectVisible: false,
-        acceptLabel: "OK",
-    });
+  open(event: Event, id: string) {
+    this.uploadFormsModalService.editRecord(id);
+    // this.confirmationService.confirm({
+    //     target: event.target as EventTarget,
+    //     message: 'You do not have access to Recipient Data Review. Please contact your team administrator.',
+    //     header: 'Restricted Permissions',
+    //     acceptIcon:"none",
+    //     rejectVisible: false,
+    //     acceptLabel: "OK",
+    // });
+
+    this.toggleUploadForms();
   }
 
   toggleUploadForms() {

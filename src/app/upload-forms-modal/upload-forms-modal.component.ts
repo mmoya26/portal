@@ -1,11 +1,12 @@
 // Angular Imports
-import { Component, Output, EventEmitter, Input, inject} from '@angular/core';
+import { Component, Output, EventEmitter, Input, inject, OnInit} from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 // Interfaces & Services
 import { RecipientDataReviewRecord } from '../interfaces/recipient-data-review-record';
 import { RecipientDataReviewService } from '../service/recipient-data-review.service';
+import { UploadFormsModalService } from '../service/upload-forms-modal.service';
 
 // PrimeNG imports
 import { DropdownModule } from 'primeng/dropdown';
@@ -25,22 +26,24 @@ import { v4 as uuidv4 } from 'uuid'
   templateUrl: './upload-forms-modal.component.html',
   styleUrl: './upload-forms-modal.component.css'
 })
-export class UploadFormsModalComponent {
+export class UploadFormsModalComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private dataReviewService: RecipientDataReviewService) {}
+  constructor(private formBuilder: FormBuilder, private dataReviewService: RecipientDataReviewService, private uploadFormsModalService: UploadFormsModalService) {}
 
   @Input() isVisible! : boolean
   @Output() hideUploadForms = new EventEmitter<boolean>();
 
-  uploadForm =  this.formBuilder.group({
-    id: [uuidv4()],
+  currentRecord: RecipientDataReviewRecord;
+
+  uploadForm = this.formBuilder.group({
+    id: [''],
     formType: ['', [Validators.required]],
     taxYear: ['', [Validators.required]],
     isFileProductionType: [false],
     notes: [''],
     fileUploaded: ['', [Validators.required]],
-    status: ['Needs Review'],
-    companyName: ['M&M Company']
+    status: [''],
+    companyName: ['']
   });
 
   get formType() {
@@ -63,6 +66,12 @@ export class UploadFormsModalComponent {
     return this.uploadForm.get('taxYear');
   }
 
+  ngOnInit(): void {
+    this.uploadFormsModalService.currentRecord$.subscribe(record => {
+      this.uploadForm.setValue(record);
+    });
+  }
+
   handleFileUploaded({files} : FileUploadEvent) {
     const fileName = files[0].name;
     this.uploadForm.patchValue({fileUploaded: fileName});
@@ -75,12 +84,12 @@ export class UploadFormsModalComponent {
   
   hide() {
     this.hideUploadForms.emit(false);
+    this.uploadFormsModalService.resetCurrentRecord();
   }
 
   onSubmit() {
     if(this.uploadForm.valid) {
-      // Cast record from FormControls to be RecipientDataReviewRecord before emitting event
-      let record = <RecipientDataReviewRecord>this.uploadForm.value
+      let record = <RecipientDataReviewRecord> this.uploadForm.value
       this.dataReviewService.updateRecords(record);
       this.resetForm();
     } else {
@@ -90,8 +99,9 @@ export class UploadFormsModalComponent {
   }
 
   resetForm() {
-    this.uploadForm.reset({id: uuidv4(), formType: '', taxYear: '', isFileProductionType: false, notes: '', fileUploaded: '', status: 'Needs Review', companyName: 'M&M Company' });
+    this.uploadFormsModalService.resetCurrentRecord();
     this.uploadForm.markAsPristine();
+    this.uploadForm.markAsUntouched();
   }
 
   getOverlayOptions(): OverlayOptions {

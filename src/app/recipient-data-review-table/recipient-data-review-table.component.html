@@ -20,14 +20,14 @@
         <th>Status <img src="../../assets/sort-icon-grey.svg"/></th>
       </tr>
 
-      @for (record of recipientDataReviewRecords; track $index) {
+      @for (record of recipientDataReviewRecords; track record.id) {
         <tr>
           <td>{{record.companyName}}</td>
           <td>{{record.formType}}</td>
           <td>{{record.taxYear}}</td>
           <td>{{record.isFileProductionType ? "Production" : "Test"}}</td>
           <td [classList]="getStatusClass(record.status || 'Needs Review')"><div class="status-circle"></div>{{record.status || 'Needs Review'}}</td>
-          <td><div class="review-page-circle" (click)="open($event, record.formType)"><img src="../../assets/data-review-icon-light.svg"/></div></td>
+          <td><div class="review-page-circle" (click)="open($event, record.id)"><img src="../../assets/data-review-icon-light.svg"/></div></td>
         </tr>
       }
   </table> 

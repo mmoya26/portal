@@ -22,7 +22,9 @@ export class RecipientDataReviewService {
     this._recipientDataReviewRecords.next(current);
   }
 
-  getAllRecords() {
-    return this.recipientDataReviewRecords$;
+  getRecordById(id: string): RecipientDataReviewRecord {
+    let record: RecipientDataReviewRecord = this._recipientDataReviewRecords.getValue().filter(r => r.id === id)[0];
+    return record;
   }
+
 }
