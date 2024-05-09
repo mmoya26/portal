@@ -17,7 +17,13 @@ export class RecipientDataReviewService {
   updateRecords(record: RecipientDataReviewRecord) {
     let current = this._recipientDataReviewRecords.getValue();
 
-    current.push(record);
+    if (current.some(r => r.id === record.id)) {
+      let newRecords = current.filter(row => row.id !== record.id);
+      newRecords.push(record);
+      current = newRecords;
+    } else {
+      current.push(record);
+    }
 
     this._recipientDataReviewRecords.next(current);
   }
